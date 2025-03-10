@@ -1,26 +1,25 @@
+// src/components/EffectMenu.tsx
 'use client';
 
-import { useState } from 'react';
-import { Select, SelectContent, SelectItem } from './ui/select';
-
-const effectOptions = [
-  'Subtle Cursor Movement',
-  'Micro Text Weight Shift',
-  'Soft Focus Pulse',
-];
+import { useAppStore } from '@/lib/store';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Effects } from '@/components/effects';
 
 export const EffectMenu = () => {
-  const [selectedEffect, setSelectedEffect] = useState('');
+  const { selectedEffect, setSelectedEffect } = useAppStore();
+  //console.log('Current selectedEffect:', selectedEffect);
 
   return (
     <div className="mb-4">
       <label className="block mb-2 text-lg font-medium">Select Text Effect:</label>
       <Select value={selectedEffect} onValueChange={setSelectedEffect}>
+        <SelectTrigger>
+          <SelectValue placeholder="Choose an effect" />
+        </SelectTrigger>
         <SelectContent>
-          <SelectItem value="!">None</SelectItem>
-          {effectOptions.map((effect) => (
-            <SelectItem key={effect} value={effect}>
-              {effect}
+          {Effects.map((effect) => (
+            <SelectItem key={effect.name} value={effect.name}>
+              {effect.name}
             </SelectItem>
           ))}
         </SelectContent>

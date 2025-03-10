@@ -1,4 +1,3 @@
-//lib/indexedDB.ts
 import { openDB } from 'idb';
 
 const DB_NAME = 'TextEffectPlayground';

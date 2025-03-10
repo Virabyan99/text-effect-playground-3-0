@@ -3,16 +3,16 @@
 import { useAppStore } from '@/lib/store';
 
 export const CodeEditorPanel = () => {
-  const { text } = useAppStore();
+  const { effectCode, setEffectCode } = useAppStore();
 
   return (
     <div className="h-full flex flex-col">
       <h2 className="text-xl font-semibold mb-2">Effect Code Editor</h2>
-      <pre className="flex-1 p-2 bg-gray-200 overflow-auto rounded-md">
-        <code>
-          {`// Example code for applying effect\nconst applyEffect = (text) => {\n  return text.split('').reverse().join('');\n};`}
-        </code>
-      </pre>
+      <textarea
+        className="flex-1 p-2 bg-gray-200 border rounded-md resize-none overflow-auto focus:outline-none font-mono"
+        value={effectCode}
+        onChange={(e) => setEffectCode(e.target.value)}
+      />
     </div>
   );
 };
